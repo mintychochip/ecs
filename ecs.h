@@ -6,14 +6,24 @@
 #include <deque>
 #define MAX_COMPONENTS 32
 #define MAX_ENTITIES 500
+
+#define TRANSFORM ecs::Transform
+#define SPRITE ecs::Sprite
+#define PHYSICS ecs::Physics
+#define HEALTH ecs::Health
+
 #ifdef DEBUG
-#define DEBUG_LOG(fmt, ...) printf(fmt, __VA_ARGS__)
+#include <iostream>
+#include <cstdio>
+#define DPRINTF(fmt, ...) printf(fmt, __VA_ARGS__)
+#define DPRINT(str) std::cout << str << std::flush
 #else
-#define DEBUG_LOG(fmt, ...)
+#define DPRINTF(fmt, ...)
+#define DPRINT(str)
 #endif
 
+extern uint16_t counter;
 
-uint16_t counter = 0;
 template <class T>
 uint16_t getId()
 {
@@ -54,13 +64,24 @@ class Vec2i {
         void setY(int y);
         Vec2i operator- () const;
         Vec2i operator+ (Vec2i v) const;
-        Vec2i operator* (float scale) const;
+        Vec2f operator* (float scale) const;
         int operator[] (int idx) const;
         int& operator[] (int idx);
         Vec2i& operator+= (const Vec2i& v);
 };
 
 namespace ecs {
+
+    class ECS;
+    extern ECS ecs;
+
+    struct Physics
+    {
+        Vec2f vel;
+        Vec2f acc;
+        float mass;
+    };
+
     struct Transform 
     {
         Vec2f pos;
@@ -74,9 +95,29 @@ namespace ecs {
         float max;
     };
 
-    struct Render
+    struct Sprite
     {
         char* texture {nullptr};
+    };
+
+    class PlanetData
+    {
+        private:
+            float _temperature;
+            float _continentalness;
+            uint16_t _radius;
+        public:
+            float temperature() const;
+            float continentalness() const;
+            uint16_t radius() const;
+            static PlanetData generate(uint16_t seed);
+    };
+
+    class HeightMap
+    {
+        private:
+            std::vector<std::vector<float>> map;
+         
     };
 
     struct Entity {
@@ -93,7 +134,8 @@ namespace ecs {
             ComponentPool(uint16_t s);
             uint16_t size() const;
             void* get(uint16_t idx);
-    };
+    }; 
+
     class ComponentManager
     {
         private:
@@ -105,9 +147,10 @@ namespace ecs {
             template <typename T>
             T* fetch(Entity* e_ptr);
 
-            template <typename... T>
+            template <typename T>
             bool has(Entity* e_ptr);
     };
+
     class EntityManager
     {
         private:
@@ -121,6 +164,7 @@ namespace ecs {
             void ret(Entity*& e_ptr);
             uint16_t maxEntities() const;
     };
+
     class ECS
     {
         private:

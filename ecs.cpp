@@ -1,4 +1,6 @@
 #include "ecs.h"
+#include <ctime>
+#include <random>
 #include <cstdint>
 #include <bitset>
 #include <memory>
@@ -97,9 +99,9 @@ Vec2i Vec2i::operator+(Vec2i vec) const
     return Vec2i(v[0] + vec.v[0], v[1] + vec.v[1]);
 }
 
-Vec2i Vec2i::operator*(float scale) const
+Vec2f Vec2i::operator*(float scale) const
 {
-    return Vec2i(getX() * scale, getY() * scale);
+    return Vec2f(getX() * scale, getY() * scale);
 }
 
 int Vec2i::operator[](int idx) const
@@ -121,7 +123,12 @@ Vec2i &Vec2i::operator+=(const Vec2i &vec)
 
 namespace ecs
 {
-    Entity::Entity(eid_t i, cmask_t m) : id(i), mask(m) {}
+    ECS ecs;
+
+    Entity::Entity(eid_t i, cmask_t m) : id(i), mask(m) 
+    {
+
+    }
 
     ComponentPool::ComponentPool(uint16_t size) : _size {size}
     {
@@ -185,10 +192,6 @@ namespace ecs
         return _component_manager;
     }
 }
-
 int main() {
-    ecs::ECS s;
-    auto e = s.entity().checkout();
-    auto render = s.component().assign<ecs::Render>(e);
 
 }
