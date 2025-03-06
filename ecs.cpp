@@ -180,6 +180,11 @@ namespace ecs
         return _max_entities;
     }
 
+    std::vector<Entity>& EntityManager::getEntities()
+    {
+        return _entities;
+    }
+
     ECS::ECS() : _entity_manager{MAX_ENTITIES} {}
 
     EntityManager &ECS::entity()
@@ -192,6 +197,18 @@ namespace ecs
         return _component_manager;
     }
 }
+uint16_t counter = 0;
 int main() {
-
+    auto a = ecs::ecs.entity().checkout();
+    while (a != nullptr) {
+        auto health = ecs::ecs.component().assign<HEALTH>(a);
+        auto transform = ecs::ecs.component().assign<TRANSFORM>(a);
+        health->health = 500;
+        a = ecs::ecs.entity().checkout();
+    }
+    for (auto& ptr : ecs::ecs.query<HEALTH,TRANSFORM>()) {
+        std::cout << ptr->id << '\n';
+        auto health = ecs::ecs.component().fetch<HEALTH>(ptr);
+        std::cout << health->health << '\n';
+    }
 }

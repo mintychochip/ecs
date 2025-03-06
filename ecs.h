@@ -5,7 +5,7 @@
 #include <vector>
 #include <deque>
 #define MAX_COMPONENTS 32
-#define MAX_ENTITIES 500
+#define MAX_ENTITIES 100
 
 #define TRANSFORM ecs::Transform
 #define SPRITE ecs::Sprite
@@ -147,7 +147,7 @@ namespace ecs {
             template <typename T>
             T* fetch(Entity* e_ptr);
 
-            template <typename T>
+            template <typename... T>
             bool has(Entity* e_ptr);
     };
 
@@ -163,6 +163,7 @@ namespace ecs {
             Entity* checkout();
             void ret(Entity*& e_ptr);
             uint16_t maxEntities() const;
+            std::vector<Entity>& getEntities();
     };
 
     class ECS
@@ -174,6 +175,8 @@ namespace ecs {
             ECS();
             EntityManager& entity();
             ComponentManager& component();
+            template <typename... T>
+            std::vector<Entity*> query();
     };
 }
 #include "ecs.tpp"
