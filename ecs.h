@@ -138,6 +138,7 @@ namespace ecs {
 
     class ComponentManager
     {
+        friend class ECS;
         private:
             std::vector<std::unique_ptr<ComponentPool>> _pools;
         public:
@@ -153,6 +154,7 @@ namespace ecs {
 
     class EntityManager
     {
+        friend class ECS;
         private:
             uint16_t _max_entities;
             std::vector<Entity> _entities;
@@ -177,6 +179,7 @@ namespace ecs {
             ComponentManager& component();
             template <typename... T>
             std::vector<Entity*> query();
+            void debug();
     };
 }
 #include "ecs.tpp"
