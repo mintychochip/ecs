@@ -46,8 +46,9 @@ This repository is a simple implementation of an ECS and loosely models this art
 
 ## Results
 
-Entity Bitmasks, we had two components in the code, Health (1 bit) and Transform (0 bit). All entities had both components.
+(1) Entity Bitmasks, we had two components in the code, Health (1 bit) and Transform (0 bit). All entities had both components. (2)
+Sample Hexdump of the health component pool, all entities had randomized health values.
+
 <img width="222" height="724" alt="Screenshot 2026-03-04 011945" src="https://github.com/user-attachments/assets/d13fd38a-2392-4ae7-bdd4-6359a011c9e3" />
 
-Sample Hexdump of the health component pool, all entities had randomized health values.
 <img width="329" height="554" alt="Screenshot 2026-03-04 011938" src="https://github.com/user-attachments/assets/bfdb5bf3-d036-44c1-bc38-32a4b88f25fc" />
