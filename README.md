@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">
-  <strong>⚡ A Simple Entity Component System in C++</strong>
+  <strong>A Simple Entity Component System in C++</strong>
 </p>
 
 <p align="center">
@@ -15,18 +15,18 @@
 
 ---
 
-## ✨ Features
+## Features
 
-- **📦 Component Pools** — Efficient contiguous memory storage for components
-- **🎭 Entity Bitmasks** — 32-bit component masks for fast entity queries
-- **⚡ Fast Queries** — Iterate only entities with specific components
-- **🔄 Automatic Memory Management** — Object pooling and recycling
-- **📊 Memory Layout Visualization** — Debug memory layout with hex dumps
-- **🧬 Template-Based** — Type-safe component access
+- **Component Pools** — Efficient contiguous memory storage for components
+- **Entity Bitmasks** — 32-bit component masks for fast entity queries
+- **Fast Queries** — Iterate only entities with specific components
+- **Automatic Memory Management** — Object pooling and recycling
+- **Memory Layout Visualization** — Debug memory layout with hex dumps
+- **Template-Based** — Type-safe component access
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Component | Technology |
 |-----------|------------|
@@ -38,7 +38,7 @@
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Build
 
@@ -88,7 +88,7 @@ int main() {
 
 ---
 
-## 📖 Architecture
+## Architecture
 
 ### Core Concepts
 
@@ -139,7 +139,7 @@ Each entity has a 32-bit mask representing which components it owns:
 
 ---
 
-## 🧩 Built-in Components
+## Built-in Components
 
 | Component | Fields | Description |
 |-----------|--------|-------------|
@@ -164,7 +164,7 @@ float d = v[0];              // 10.0 (x component)
 
 ---
 
-## 🔍 Query System
+## Query System
 
 Query entities by their component mask:
 
@@ -193,7 +193,7 @@ for (auto& e : ecs::ecs.query<TRANSFORM, PHYSICS, HEALTH, SPRITE>()) {
 
 ---
 
-## 💾 Memory Layout
+## Memory Layout
 
 The ECS uses contiguous arrays for cache-friendly access:
 
@@ -213,7 +213,7 @@ Cache Line (64 bytes) fits 8 Health components
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 ecs/
@@ -233,7 +233,7 @@ Edit these macros in `ecs.h`:
 
 ---
 
-## 🎯 Design Philosophy
+## Design Philosophy
 
 This implementation follows the [Let's Build an ECS](https://devlog.hexops.com/2022/lets-build-ecs-part-1/) series:
 
@@ -244,7 +244,7 @@ This implementation follows the [Let's Build an ECS](https://devlog.hexops.com/2
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions welcome!
 
@@ -256,12 +256,12 @@ Contributions welcome!
 
 ---
 
-## 📄 License
+## License
 
 MIT License
 
 ---
 
 <p align="center">
-  Data-oriented game development ⚡
+  Data-oriented game development
 </p>
